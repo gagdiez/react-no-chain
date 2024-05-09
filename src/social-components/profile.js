@@ -19,7 +19,7 @@ export const Profile = ({ accountId }) => {
     ).then(res => setProfile(res[accountId].profile));
   }, [accountId, wallet]);
 
-  if (!accountId) return "Please pass an accountId";
+  if (!accountId) return "Please login";
 
   if (!profile) return "Loading profile...";
 

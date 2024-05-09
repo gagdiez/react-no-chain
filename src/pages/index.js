@@ -1,40 +1,34 @@
-import Image from 'next/image';
-
-import NearLogo from '/public/near.svg';
-import NextLogo from '/public/next.svg';
 import styles from '@/styles/app.module.css';
-import { DocsCard, HelloComponentsCard, HelloNearCard } from '@/components/cards';
 
-export default function Home() {
+import { Components } from '@/config';
+import { Profile } from '@/social-components/profile';
+
+import { useContext } from 'react';
+import { NearContext } from '@/context';
+
+export default function HelloComponents() {
+  const { wallet, signedAccountId } = useContext(NearContext);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}> </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src={NearLogo}
-          alt="NEAR Logo"
-          width={110 * 1.5}
-          height={28 * 1.5}
-          priority
-        />
-        <h3 className="ms-2 me-3 text-dark"> + </h3>
-        <Image
-          className={styles.logo}
-          src={NextLogo}
-          alt="Next.js Logo"
-          width={300 * .58}
-          height={61 * .58}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <HelloComponentsCard />
-        <HelloNearCard />
-        <DocsCard />
-      </div>
-    </main>
+    <>
+      <main className={styles.main}>
+        <div className={styles.description}>
+          <p>
+            Loading components from: &nbsp;
+            <code className={styles.code}>{Components.socialDB}</code>
+          </p>
+        </div>
+        <div className={styles.center}>
+          <h1>
+            <code>Components</code> Made Simple
+          </h1>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <Profile accountId={signedAccountId} />
+          </div>
+        </div>
+      </main>
+    </>
   );
 }
