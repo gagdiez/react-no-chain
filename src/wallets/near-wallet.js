@@ -1,4 +1,3 @@
-
 // near api js
 import { providers } from 'near-api-js';
 
