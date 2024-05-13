@@ -2,7 +2,7 @@ import { NearContext } from '@/context';
 import { useEffect, useState, useContext } from 'react';
 
 export const NftImage = ({ contractId, tokenId, alt }) => {
-  const { wallet, signedAccountId } = useContext(NearContext);
+  const { wallet, social, signedAccountId } = useContext(NearContext);
 
   const [imageUrl, setImageUrl] = useState("https://ipfs.near.social/ipfs/bafkreidoxgv2w7kmzurdnmflegkthgzaclgwpiccgztpkfdkfzb4265zuu");
   const [nftMetadata, setNftMetadata] = useState(null);

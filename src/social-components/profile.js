@@ -4,22 +4,19 @@ import { useEffect, useState, useContext } from 'react';
 import { NftImage } from './nft-image';
 
 export const Profile = ({ accountId }) => {
-  const { wallet, signedAccountId } = useContext(NearContext);
+  const { wallet, social, signedAccountId } = useContext(NearContext);
   const [profile, setProfile] = useState(null);
 
+  const userId = accountId || signedAccountId;
+
   useEffect(() => {
+    if (!userId) return;
 
-    if (!accountId) return;
+    social.get(`${userId}/profile/**`)
+      .then(res => setProfile(res[userId].profile));
+  }, [social, userId]);
 
-    wallet.viewMethod(
-      {
-        contractId: 'social.near', method: 'get',
-        args: { keys: [`${accountId}/profile/**`] }
-      }
-    ).then(res => setProfile(res[accountId].profile));
-  }, [accountId, wallet]);
-
-  if (!accountId) return "Please login";
+  if (!userId) return "Please login";
 
   if (!profile) return "Loading profile...";
 

@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import { NearContext } from '@/context';
 
 export default function HelloComponents() {
-  const { wallet, signedAccountId } = useContext(NearContext);
+  const { wallet, social, signedAccountId } = useContext(NearContext);
 
   return (
     <>
