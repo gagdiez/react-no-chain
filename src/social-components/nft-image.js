@@ -13,7 +13,7 @@ export const NftImage = ({ contractId, tokenId, alt }) => {
     wallet.viewMethod({ contractId, method: "nft_token", args: { token_id: tokenId } }).then((res) => {
       setTokenMetadata(res.metadata);
     });
-  }, [wallet, contractId, tokenId]);
+  }, [wallet, contractId, tokenId, alt]);
 
   useEffect(() => {
     if (!nftMetadata || !tokenMetadata) return;
